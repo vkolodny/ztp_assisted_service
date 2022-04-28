@@ -1,0 +1,37 @@
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: spoke-worker-0-1-nmstateconfig
+  namespace: spoke-0
+  labels:
+    nmstate_config_cluster_name: spoke-0
+spec:
+  config:
+    interfaces:
+      - name: eth0
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 192.168.128.19
+              prefix-length: 24
+          dhcp: false
+
+        ipv6:
+          enabled: false
+
+    dns-resolver:
+      config:
+        server:
+          - 192.168.128.1
+    routes:
+      config:
+        - destination: '0.0.0.0/0'
+          next-hop-address: 192.168.128.1
+          next-hop-interface: eth0
+          table-id: 254
+  interfaces:
+    - name: "eth0"
+      macAddress: "52:54:00:B6:A6:9A"

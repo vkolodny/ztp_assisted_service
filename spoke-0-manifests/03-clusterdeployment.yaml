@@ -1,0 +1,20 @@
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: spoke-0
+  namespace: spoke-0
+spec:
+  baseDomain: qe.lab.redhat.com
+  clusterName: spoke-0
+  clusterInstallRef:
+    group: extensions.hive.openshift.io
+    kind: AgentClusterInstall
+    name: spoke-0
+    version: v1beta1
+  platform:
+    agentBareMetal:
+      agentSelector:
+        matchLabels:
+          bla: aaa
+  pullSecretRef:
+    name: spoke-0-pull-secret

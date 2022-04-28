@@ -1,0 +1,22 @@
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  name: spoke-0
+  namespace: "spoke-0"
+spec:
+  clusterDeploymentRef:
+    name: spoke-0
+  imageSetRef:
+    name: "4.10"
+  apiVIP: "192.168.128.5"
+  ingressVIP: "192.168.128.10"
+  networking:
+    clusterNetwork:
+    - cidr: "10.128.0.0/14"
+      hostPrefix: 23
+    serviceNetwork:
+    - "172.30.0.0/16"
+  provisionRequirements:
+    controlPlaneAgents: 3
+    workerAgents: 2
+  sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9hb6iTZJypEmzg4IZ767ze60UGhBWnjPXhovWVB7uKputdLzZhmlo36ifkXr/DTk8NGm47r6kXmz9NAF0pDHa5jX6yJFnhS4z5NY/mzsUX41gwiqBKYHgdp/KE1ylE8mbNon5ZpaaGvb876myjjPjPwWsD8hvXZirA5Q8TfDb/Pvgy1dhVH/uN05Ip1vVsp+bFGMPUJVWVUy/Eby5xW6OJv+FBOQq4nu6tslDZlHYXX2TSGrlW4x0i/oQMpKu/Y8ygAdjWqmAy6UBcho1nNWy15cp0jI5Fhjze171vSWZLAqJY+eFcL2kt/09RnY+MXyY/tIf+qNMyBE2Qltigah'
